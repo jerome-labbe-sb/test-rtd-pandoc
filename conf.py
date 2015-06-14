@@ -285,3 +285,18 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+from subprocess import check_call
+import os
+nbs = []
+
+here = os.path.dirname(os.path.abspath(__file__))
+for parent, dirs, files in os.walk(here):
+    if '.ipynb_checkpoints' in parent:
+        continue
+    for f in files:
+        if f.endswith('.ipynb'):
+            nbs.append(os.path.join(parent, f))
+
+if nbs:
+    check_call(['ipython', 'nbconvert', '--to', 'rst'] + nbs, cwd=here)

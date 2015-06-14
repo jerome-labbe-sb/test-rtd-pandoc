@@ -10,3 +10,7 @@ Does Read the Docs have pandoc installed?
     ... except CalledProcessError:
     ...   print("No pandoc on %s" % os.environ['PATH'])
 
+
+.. toctree::
+
+    notebook.rst
